@@ -8,7 +8,10 @@ if [ ! -e package.json ]; then
 fi
 
 yarn add -D prettier eslint-config-prettier
-
 yarn add remark remark-html gray-matter
+yarn add -D tailwindcss postcss autoprefixer
+yarn tailwindcss init -p
+yarn add @headlessui/react
+yarn add @heroicons/react
 
 yarn dev

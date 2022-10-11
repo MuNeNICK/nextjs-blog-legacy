@@ -27,7 +27,6 @@ const Home: NextPage<Props> = ({ allPosts }) => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>記事一覧</h1>
-
         <div className={styles.grid}>
           {allPosts.map((post) => (
             <Link href={`/blog/${post.slug}`}>
