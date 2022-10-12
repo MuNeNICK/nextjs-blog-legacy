@@ -21,5 +21,6 @@ yarn add rehype-slug
 yarn add remark-prism
 yarn add rehype-parse rehype-react
 yarn add remark-unwrap-images
+yarn add remark-gfm
 
 yarn dev

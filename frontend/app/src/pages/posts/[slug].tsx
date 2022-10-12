@@ -14,6 +14,7 @@ import rehypeParse from 'rehype-parse';
 import rehypeReact from 'rehype-react';
 import Link from 'next/link';
 import remarkUnwrapImages from 'remark-unwrap-images'
+import remarkGfm from 'remark-gfm'
 
 export async function getStaticProps({ params }) {
   const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
@@ -28,6 +29,7 @@ export async function getStaticProps({ params }) {
       heading: '目次',
       tight: true,
     })
+    .use(remarkGfm)
     .use(remarkUnwrapImages)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeSlug)

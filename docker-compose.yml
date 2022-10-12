@@ -9,9 +9,8 @@ services:
     hostname: next-server
     tty: true
     environment:
-      - NODE_ENV=DEVELOPMENT
       - PORT=3000
-      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
     volumes:
       - ./frontend/app:/usr/src/app
       - front_node_modules:/usr/src/app/node_modules
