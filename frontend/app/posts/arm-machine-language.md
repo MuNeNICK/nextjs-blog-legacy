@@ -2,7 +2,8 @@
 title: 'Armアセンブリと機械語の変換'
 date: '2022-07-12'
 description: 'ARMアセンブラと機械語の変換や仕組みについて記述してあります。'
-image: arm.svg 
+image: arm.svg
+categories: ['programming']
 ---
 
 ## 目次

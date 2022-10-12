@@ -15,7 +15,6 @@ import rehypeReact from 'rehype-react';
 import Link from 'next/link';
 import remarkUnwrapImages from 'remark-unwrap-images'
 
-
 export async function getStaticProps({ params }) {
   const file = fs.readFileSync(`posts/${params.slug}.md`, 'utf-8');
   const { data, content } = matter(file);
@@ -35,9 +34,13 @@ export async function getStaticProps({ params }) {
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
-  return {
-    props: { frontMatter: data, content: result.toString(), slug: params.slug },
-  };
+    return {
+      props: {
+        frontMatter: data,
+        content: result.toString(),
+        slug: params.slug,
+      },
+    };
 }
 
 export async function getStaticPaths() {
@@ -52,6 +55,7 @@ export async function getStaticPaths() {
     fallback: false,
   };
 };
+
 
 const MyImage = ({ src, alt }) => {
   return (
@@ -106,14 +110,28 @@ const Post = ({ frontMatter, content, slug }) => {
           ],
         }}
       />
-    <div className="prose prose-lg max-w-none">
-      <div className="border">
-        <Image src={`/${frontMatter.image}`} width={1200} height={700} alt={frontMatter.title} />
+      <div className="prose prose-lg max-w-none">
+        <div className="border">
+          <Image
+            src={`/${frontMatter.image}`}
+            width={1200}
+            height={700}
+            alt={frontMatter.title}
+          />
+        </div>
+        <h1 className="mt-12">{frontMatter.title}</h1>
+        <span>{frontMatter.date}</span>
+        <div className="space-x-2">
+          {frontMatter.categories.map((category) => (
+            <span key={category}>
+              <Link href={`/categories/${category}`}>
+                <a>{category}</a>
+              </Link>
+            </span>
+          ))}
+        </div>
+        {toReactNode(content)}
       </div>
-      <h1 className="mt-12">{frontMatter.title}</h1>
-      <span>{frontMatter.date}</span>
-      {toReactNode(content)}
-    </div>
     </>
   );
 };
