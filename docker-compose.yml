@@ -14,5 +14,9 @@ services:
       - CHOKIDAR_USEPOLLING=true
     volumes:
       - ./frontend/app:/usr/src/app
+      - front_node_modules:/usr/src/app/node_modules
     ports:
       - 3000:3000
+
+volumes:
+  front_node_modules:
