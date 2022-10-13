@@ -1,5 +1,4 @@
-FROM node:16.13.2-bullseye
-
+FROM node:latest
 WORKDIR /usr/src/app
 
 ADD entrypoint.sh /
